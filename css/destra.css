@@ -1,0 +1,19 @@
+.donations, #obbiettivo {
+    width: calc(100% - 20px);;
+    height: 150px;
+    border: 1px solid black;
+    margin: 5px auto;
+    border-radius: 10px;
+    padding: 0px 5px;
+}
+#obbiettivo {
+    height: 400px;
+}
+
+.destra {
+    border: 1px solid black;
+    width: 350px;
+    margin-top: 70px;
+    border-radius: 10px;
+    margin-right: 20px;
+}

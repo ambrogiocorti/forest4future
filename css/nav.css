@@ -1,0 +1,32 @@
+#nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: yellowgreen;
+    align-items: center;
+    height: 50px;
+}
+.link {
+    display: flex;
+    height: 100%;
+}
+.link a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.link a img, #social a img {
+    width: 30px;
+    height: 30px;
+    padding: 3px;
+}
+.link a:hover{
+    background-color: green;
+}
+#social {
+    margin-left: auto;
+    padding: 10px;
+}
