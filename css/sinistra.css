@@ -5,12 +5,12 @@
     margin: 70px;
 }
 #immagini {
-    height: 400px;
-    width: 700px;
+    height: 600px;
+    width: 1000px;
     border: 1px solid black;
     display: flex;
     border-radius: 10px;
-    margin: 10px;
+    margin: 10px auto;
 }
 #prev, #next {
     background-color: green;
