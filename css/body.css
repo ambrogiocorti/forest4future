@@ -1,5 +1,5 @@
 body {
-    font-family: Calibri;
+    font-family: arial;
     margin: 0px;
 }
 
@@ -17,4 +17,6 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
+    color: white;
+    background-image: url("/images/pine-tree.jpg");
 }

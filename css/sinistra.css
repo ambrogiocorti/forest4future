@@ -13,22 +13,21 @@
     margin: 10px auto;
 }
 #prev, #next {
-    background-color: green;
+    background-color: yellowgreen;
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 15px 25px;
     font-size: 20px;
     cursor: pointer;
     border-radius: 10px;
+    margin: 5px;
 }
 #prev:hover, #next:hover {
-    background-color: darkgreen;
+    background-color: green;
 }
-
 .sinistra {
     flex: 1;
 }
-
 .desc-sx {
     border: 1px solid black;
     margin: 10px 30px;

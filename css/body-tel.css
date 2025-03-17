@@ -1,0 +1,108 @@
+@media screen and (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #nav {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .link {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .link a {
+        width: 100%;
+        justify-content: center;
+        padding: 15px;
+    }
+
+    #social {
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding: 10px;
+    }
+
+    #slogan {
+        height: auto;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .destra {
+        width: 90%;
+        margin-right: 0;
+    }
+
+    #obbiettivo, .donations {
+        height: auto;
+    }
+
+    .desc-sx {
+        margin: 10px;
+        padding: 5px;
+    }
+
+    .link a img, #social a img {
+        width: 24px;
+        height: 24px;
+    }
+
+    body {
+        font-size: 16px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    #carosello {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        width: 90%;
+        max-width: 100%;
+        margin: 20px auto;
+    }
+
+    #immagini {
+        width: 90vw;
+        height: 50vh;
+        max-height: 400px; 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+    }
+
+    #prev, #next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: yellowgreen;
+        padding: 5px 10px;
+        font-size: 20px;
+        cursor: pointer;
+        border-radius: 10px;
+        border: none;
+        color: white;
+        z-index: 10;
+    }
+
+    #prev {
+        left: -40px;
+    }
+
+    #next {
+        right: -40px;
+    }
+
+    #prev:hover, #next:hover {
+        background-color: green;
+    }
+}
