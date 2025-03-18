@@ -1,0 +1,53 @@
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form input {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.remove-item {
+    background: none;
+    border: none;
+    font-size: 18px;
+    color: red;
+    cursor: pointer;
+}
+
+.remove-item:hover {
+    color: darkred;
+}
+
+form button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+form button:hover {
+    background-color: #45a049;
+}
+
+.checkout-container {
+    margin: 20px; /* Aggiunge margine solo al contenuto */
+}
