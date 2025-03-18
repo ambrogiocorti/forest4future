@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="./images/Favicondeforestazione.png">
+        <link rel="stylesheet" href="./css/nav.css">
+        <link rel="stylesheet" href="./css/shop.css">
+        <link rel="stylesheet" href="./css/checkout.css">
+        <title>Checkout | FOREST4FUTURE</title>
+    </head>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
+    <script type="module" src="./scripts/firebase-config.js"></script>
+    <script type="module" src="./scripts/checkout.js"></script>
+    <body>
+
+        <!-- Navbar -->
+        <div id="nav">
+            <div class="link">
+                <a href="index.html">
+                    <img src="./images/Favicondeforestazione.png">
+                    <p>FOREST<b style="font-size: 125%;">4</b>FUTURE</p>
+                </a>
+            </div>
+            <div class="link">
+                <a href="shop.html">
+                    <img src="./images/shop-icon.png" alt="Negozio">
+                    <p>NEGOZIO</p>
+                </a>
+            </div>
+            <div id="cart" class="link">
+                <a href="checkout.html">
+                    <img src="./images/cart-icon.png" alt="Carrello">
+                    <span id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Sezione Checkout -->
+        <div class="checkout-container">
+            <h2>🛒 Riepilogo Ordine</h2>
+            <div id="cart-items"></div>
+            <h3>Totale: €<span id="total-price">0.00</span></h3>
+
+            <!-- Form di conferma ordine -->
+            <h2>📋 Dati di Spedizione</h2>
+            <form id="order-form">
+                <label for="name">Nome e Cognome:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="address">Indirizzo di Spedizione:</label>
+                <input type="text" id="address" name="address" required>
+
+                <label for="phone">Telefono:</label>
+                <input type="tel" id="phone" name="phone" required>
+
+                <button type="submit">Conferma Ordine</button>
+            </form>
+        </div>
+    </body>
+</html>

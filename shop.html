@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it-IT">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="./images/Favicondeforestazione.png">
+        <link rel="stylesheet" href="./css/nav.css">
+        <link rel="stylesheet" href="./css/shop.css"> <!-- Nuovo CSS per lo shop -->
+        <title>Negozio | FOREST4FUTURE</title>
+    </head>
+    <body>
+
+        <!-- Navbar -->
+        <div id="nav">
+            <div class="link">
+                <a href="index.html">
+                    <img src="./images/Favicondeforestazione.png">
+                    <p>FOREST<b style="font-size: 125%;">4</b>FUTURE</p>
+                </a>
+            </div>
+            <div class="link">
+                <a href="shop.html">
+                    <img src="./images/shop-icon.png" alt="Negozio">
+                    <p>NEGOZIO</p>
+                </a>
+            </div>
+            <div id="cart" class="link">
+                <a href="checkout.html">
+                    <img src="./images/cart-icon.png" alt="Carrello">
+                    <span id="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Titolo -->
+        <div id="shop-title">
+            <h2>🌳 Sostieni le foreste con i nostri prodotti! 🌳</h2>
+            <p>Ogni acquisto aiuta a piantare alberi e proteggere la natura.</p>
+        </div>
+
+        <!-- Sezione Prodotti -->
+        <div class="shop-container">
+            <div class="product">
+                <img src="./images/prodotto1.jpg" alt="Maglietta ECO">
+                <h3>Maglietta ECO</h3>
+                <p>T-shirt in cotone biologico 100%.</p>
+                <p><strong>€20.00</strong></p>
+                <button class="add-to-cart" data-name="Maglietta ECO" data-price="20.00">Aggiungi al carrello</button>
+            </div>
+
+            <div class="product">
+                <img src="./images/prodotto2.jpg" alt="Borraccia in acciaio">
+                <h3>Borraccia in acciaio</h3>
+                <p>Perfetta per ridurre l'uso della plastica.</p>
+                <p><strong>€15.00</strong></p>
+                <button class="add-to-cart" data-name="Borraccia in acciaio" data-price="15.00">Aggiungi al carrello</button>
+            </div>
+
+            <div class="product">
+                <img src="./images/prodotto3.jpg" alt="Shopper in cotone">
+                <h3>Shopper in cotone</h3>
+                <p>Una borsa riutilizzabile per la spesa.</p>
+                <p><strong>€10.00</strong></p>
+                <button class="add-to-cart" data-name="Shopper in cotone" data-price="10.00">Aggiungi al carrello</button>
+            </div>
+        </div>
+
+        <script src="./scripts/cart.js"></script> <!-- Script per il carrello -->
+    </body>
+</html>
