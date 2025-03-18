@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="../css/destra.css">
         <link rel="stylesheet" href="../css/body.css">
         <link rel="stylesheet" href="../css/body-tel.css">
+        <link rel="stylesheet" href="../css/orders.css">
         <title>FOREST4FUTURE</title>
     </head>
     <style>
@@ -17,6 +18,7 @@
             margin-top: 70px;
         }
     </style>
+    <script src="./scripts/page.js"></script>
     <body>
 
         <!-- Navbar -->
@@ -32,9 +34,79 @@
 
 
 
-        <div id="body">
-            <h1>Benvenuto nella pagina nascosta!</h1>
-            <h3>Cosa desideri fare?</h3>
+        <div class="container">
+            <h2>Modifica Stato Ordine</h2>
+    
+            <input id="order-id" type="text" placeholder="Inserisci ID ordine...">
+            <select id="order-status">
+                <option value="Ordinato">📦 Ordinato</option>
+                <option value="Spedito">🚚 Spedito</option>
+                <option value="In consegna">📬 In consegna</option>
+                <option value="Consegnato">✅ Consegnato</option>
+            </select>
+            <button id="update-status">Aggiorna Stato</button>
+
+    
+            <p class="message" id="status-message"></p>
         </div>
+    
+        <script type="module">
+            // Importa Firebase
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+            import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+        
+            // Configurazione Firebase (sostituisci con i tuoi dati)
+            const firebaseConfig = {
+                apiKey: "AIzaSyBJNbHSA1sgpzSekp8PD3R4tN0VdqQLImg",
+                authDomain: "forest4future-ac7b2.firebaseapp.com",
+                projectId: "forest4future-ac7b2",
+                storageBucket: "forest4future-ac7b2.firebasestorage.app",
+                messagingSenderId: "185540640434",
+                appId: "1:185540640434:web:5f7aaf8377a475de85d3ab"
+            };
+        
+            // Inizializza Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getFirestore(app);
+        
+            // Seleziona gli elementi HTML
+            const orderIdInput = document.getElementById("order-id");
+            const statusSelect = document.getElementById("order-status");
+            const updateButton = document.getElementById("update-status");
+        
+            // Funzione per aggiornare lo stato dell'ordine
+            updateButton.addEventListener("click", async () => {
+                const orderId = orderIdInput.value.trim();
+                const newStatus = statusSelect.value;
+        
+                if (!orderId) {
+                    alert("Inserisci un ID ordine valido!");
+                    return;
+                }
+        
+                const orderRef = doc(db, "orders", orderId);
+        
+                try {
+                    // Controlla se l'ordine esiste
+                    const docSnap = await getDoc(orderRef);
+        
+                    if (!docSnap.exists()) {
+                        alert("Errore: l'ordine non esiste in Firestore!");
+                        return;
+                    }
+        
+                    // Aggiorna lo stato
+                    await updateDoc(orderRef, { 
+                        status: newStatus // Aggiorna solo "status"
+                    });                    
+        
+                    alert("Stato aggiornato con successo!");
+                } catch (error) {
+                    console.error("Errore nell'aggiornamento:", error);
+                    alert("Errore durante l'aggiornamento dello stato.");
+                }
+            });
+        </script>
+                
     </body>
 </html>
