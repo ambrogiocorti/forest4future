@@ -13,6 +13,13 @@
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js"></script>
     <script type="module" src="./scripts/firebase-config.js"></script>
     <script type="module" src="./scripts/checkout.js"></script>
+    <style>
+        body{
+            margin-top: 60px;
+            margin-bottom: 40px;
+        }
+    </style>
+    <script src="./scripts/page.js"></script>
     <body>
 
         <!-- Navbar -->
@@ -60,12 +67,19 @@
 
                 <button type="submit">Conferma Ordine</button>
             </form>
+
+            <div id="track-order-section">
+                <h3>Traccia il tuo ordine</h3>
+                <input type="text" id="order-code" placeholder="Inserisci il codice d'ordine">
+                <button id="track-order">Traccia</button>
+                <p id="order-status"></p>
+            </div>            
         </div>
     </body>
 
 
 
-    <script>
+    <script>        
         document.addEventListener("keydown", function(event) {
             if (event.ctrlKey && event.shiftKey && event.key === "A") {
                 window.location.href = "./images/h.html"; 
