@@ -1,0 +1,136 @@
+/* Stile generale */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    padding: 10px; /* Aggiunge un po’ di margine ai lati */
+    overflow: hidden; /* Evita scroll verticale generale */
+}
+
+/* Riduce ancora di più la distanza tra gli elementi */
+.container {
+    gap: 6px; /* Riduce lo spazio tra gli elementi */
+    padding: 15px; /* Rende il contenitore più compatto */
+}
+
+/* Rimuove ulteriore spazio tra label e input */
+label {
+    margin-bottom: 4px;
+}
+
+input, select {
+    width: 100%; /* Assicura che occupino tutto lo spazio disponibile */
+    padding: 10px; /* Riduce il padding interno */
+    margin-bottom: 4px; /* Diminuisce lo spazio dopo l'input */
+}
+
+/* Riduce lo spazio sopra il bottone */
+#update-status {
+    margin-top: 8px; /* Avvicina il bottone agli altri elementi */
+    height: 45px; /* Riduce leggermente l'altezza */
+}
+
+
+/* Contenitore principale */
+/* Contenitore principale */
+.container {
+    width: 90%;
+    max-width: 400px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 12px; /* Riduce la distanza tra gli elementi */
+    transition: all 0.3s ease-in-out;
+    height: auto; /* Adatta l'altezza al contenuto */
+    max-height: 75vh; /* Evita che il container sia troppo alto */
+    overflow-y: auto; /* Aggiunge scroll interno se serve */
+}
+
+
+/* Titolo */
+h2 {
+    color: #343a40;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* Stile per input e select */
+input {
+    width: 90%;
+    padding: 12px;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    background: #f8f9fa;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+select {
+    width: 97%;
+    padding: 12px;
+    border: 2px solid #ced4da;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: all 0.3s ease-in-out;
+    background: #f8f9fa;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    outline: none;
+}
+
+/* Effetto al focus */
+input:focus, select:focus {
+    border-color: yellowgreen;
+    background: white;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #343a40;
+    margin-bottom: 6px; /* Dimezza lo spazio (puoi ridurre ulteriormente se serve) */
+    display: block;
+}
+
+.container label + input,
+.container label + select {
+    margin-top: -50px; /* Avvicina ancora di più l'input alla label */
+}
+
+/* Bottone "Aggiorna Stato" */
+#update-status {
+    width: 100%;
+    height: 50px;
+    padding: 12px;
+    background: linear-gradient(135deg, #28a745, #218838);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#update-status:hover {
+    background: linear-gradient(135deg, #218838, #1e7e34);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+/* Migliore gestione della responsività */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+        margin: 30px auto;
+    }
+}

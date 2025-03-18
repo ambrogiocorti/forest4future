@@ -51,3 +51,54 @@ form button:hover {
 .checkout-container {
     margin: 20px; /* Aggiunge margine solo al contenuto */
 }
+
+/* Stile per la sezione di tracking dell'ordine */
+#track-order-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#track-order-section h3 {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+#order-code {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+}
+
+#track-order {
+    margin-top: 10px;
+    padding: 10px 15px;
+    border: none;
+    background-color: yellowgreen;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#track-order:hover {
+    background-color: green;
+}
+
+#order-status {
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 18px;
+    color: #555;
+}
