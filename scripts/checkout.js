@@ -1,4 +1,4 @@
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { db } from "./firebase-config.js"; // Importiamo la configurazione
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -7,8 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const cartItemsContainer = document.getElementById("cart-items");
     const totalPriceElement = document.getElementById("total-price");
     const orderForm = document.getElementById("order-form");
+    const trackButton = document.getElementById("track-order");
+    const orderCodeInput = document.getElementById("order-code");
+    const orderStatus = document.getElementById("order-status");
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || []; // Evita errori se il valore è null
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
     console.log("Carrello recuperato:", cart);
 
     function renderCart() {
@@ -39,12 +42,11 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // 🛒 Mantieni il carrello anche dopo il refresh
     window.addEventListener("beforeunload", function () {
         localStorage.setItem("cart", JSON.stringify(cart));
     });
 
-    // 📤 Gestione invio modulo
+    // 📤 Gestione invio modulo d'ordine
     orderForm.addEventListener("submit", async function (event) {
         event.preventDefault();
 
@@ -60,16 +62,9 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // 🏷️ Calcola il totale numerico invece di prendere solo il testo HTML
         const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
 
         try {
-            // 🔎 Debug prima dell'invio
-            console.log("Dati inviati a Firebase:", {
-                name, email, address, phone, cart, total, timestamp: new Date()
-            });
-
-            // Salviamo l'ordine su Firebase
             const orderRef = await addDoc(collection(db, "orders"), {
                 name: name,
                 email: email,
@@ -77,12 +72,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 phone: phone,
                 cart: cart,
                 total: total,
+                status: "Ordinato",
                 timestamp: new Date()
             });
 
-            alert(`Grazie, ${name}! Il tuo ordine è stato ricevuto con ID: ${orderRef.id}`);
+            const orderId = orderRef.id;
+            alert(`Grazie, ${name}! Il tuo ordine è stato ricevuto con ID: ${orderId}`);
 
-            // 🧹 Svuotiamo il carrello solo dopo aver confermato l'ordine
+            // 📋 Copia automatica del numero d'ordine negli appunti
+            navigator.clipboard.writeText(orderId).then(() => {
+                alert("Il numero dell'ordine è stato copiato negli appunti!");
+            }).catch(err => {
+                console.error("Errore nella copia:", err);
+            });
+
             localStorage.removeItem("cart");
             cart = [];
             renderCart();
@@ -90,6 +93,29 @@ document.addEventListener("DOMContentLoaded", function () {
         } catch (error) {
             console.error("Errore durante il salvataggio dell'ordine:", error);
             alert("Errore nel completare l'ordine. Riprova più tardi.");
+        }
+    });
+
+    // 🔎 Tracciare un ordine
+    trackButton.addEventListener("click", async function () {
+        const orderId = orderCodeInput.value.trim();
+
+        if (!orderId) {
+            alert("Inserisci un codice d'ordine valido!");
+            return;
+        }
+
+        try {
+            const orderDoc = await getDoc(doc(db, "orders", orderId));
+
+            if (orderDoc.exists()) {
+                orderStatus.textContent = `Stato dell'ordine: ${orderDoc.data().status}`;
+            } else {
+                orderStatus.textContent = "Ordine non trovato!";
+            }
+        } catch (error) {
+            console.error("Errore nel recupero dell'ordine:", error);
+            alert("Errore nel tracciare l'ordine. Riprova più tardi.");
         }
     });
 
