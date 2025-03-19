@@ -4,6 +4,15 @@ import { db } from "./firebase-config.js";
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Checkout page loaded");
 
+    console.log("Elementi trovati:");
+console.log("cart-items:", document.getElementById("cart-items"));
+console.log("total-price:", document.getElementById("total-price"));
+console.log("order-form:", document.getElementById("order-form"));
+console.log("track-order:", document.getElementById("track-order"));
+console.log("order-code:", document.getElementById("order-code"));
+console.log("order-status:", document.getElementById("order-status"));
+
+
     const cartItemsContainer = document.getElementById("cart-items");
     const totalPriceElement = document.getElementById("total-price");
     const orderForm = document.getElementById("order-form");
