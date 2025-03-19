@@ -1,33 +1,28 @@
-/* Imposta altezza della pagina e rimuove margini */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
-/* Navbar */
 #nav {
     display: flex;
     flex-direction: row;
     align-items: center;
     background-color: yellowgreen;
     height: 50px;
-    width: 100%; /* Occupa tutta la larghezza */
-    position: fixed; /* Rimane fissa in alto */
+    width: 100%;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000; /* Assicura che stia sopra il contenuto */
 }
 
-/* Contenitore per il resto della pagina */
 .container {
-    padding-top: 60px; /* Sposta il contenuto in basso per evitare sovrapposizione */
-    min-height: 100vh; /* Occupa tutta la schermata */
+    padding-top: 60px;
+    min-height: 100vh;
     padding: 20px;
 }
 
-/* Link della navbar */
 .link {
     display: flex;
     height: 100%;
@@ -42,19 +37,16 @@ html, body {
     box-sizing: border-box;
 }
 
-/* Immagini nei link */
 .link a img, #social a img {
     width: 30px;
     height: 30px;
     padding: 3px;
 }
 
-/* Effetto hover */
 .link a:hover {
     background-color: green;
 }
 
-/* Sezione social */
 #social {
     margin-left: auto;
     padding: 10px;
