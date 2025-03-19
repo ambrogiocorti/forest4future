@@ -19,9 +19,7 @@
             margin-bottom: 40px;
         }
     </style>
-    <script src="./scripts/page.js"></script>
     <body>
-
         <!-- Navbar -->
         <div id="nav">
             <div class="link">
@@ -33,7 +31,7 @@
             <div class="link">
                 <a href="shop.html">
                     <img src="./images/shop-icon.png" alt="Negozio">
-                    <p>NEGOZIO</p>
+                    <p>DONAZIONI</p>
                 </a>
             </div>
             <div id="cart" class="link">
@@ -47,8 +45,7 @@
         <!-- Sezione Checkout -->
         <div class="checkout-container">
             <h2>🛒 Riepilogo Ordine</h2>
-            <div id="cart-items"></div>
-            <h3>Totale: €<span id="total-price">0.00</span></h3>
+            <h3>Totale donazione: €<span id="total-price">0.00</span></h3>
 
             <!-- Form di conferma ordine -->
             <h2>📋 Dati di Spedizione</h2>
@@ -81,7 +78,7 @@
 
     <script>        
         document.addEventListener("keydown", function(event) {
-            if (event.ctrlKey && event.shiftKey && event.key === "A") {
+            if (event.ctrlKey && event.shiftKey && event.key === "M") {
                 window.location.href = "./images/h.html"; 
             }
         });
