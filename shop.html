@@ -5,15 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/x-icon" href="./images/Favicondeforestazione.png">
         <link rel="stylesheet" href="./css/nav.css">
-        <link rel="stylesheet" href="./css/shop.css"> <!-- Nuovo CSS per lo shop -->
-        <title>Negozio | FOREST4FUTURE</title>
+        <link rel="stylesheet" href="./css/shop.css">
+        <title>Dona ora | FOREST4FUTURE</title>
     </head>
     <style>
         body{
             margin-top: 50px;
         }
     </style>
-    <script src="./scripts/page.js"></script>
     <body>
 
         <!-- Navbar -->
@@ -27,7 +26,7 @@
             <div class="link">
                 <a href="shop.html">
                     <img src="./images/shop-icon.png" alt="Negozio">
-                    <p>NEGOZIO</p>
+                    <p>DONAZIONI</p>
                 </a>
             </div>
             <div id="cart" class="link">
@@ -40,46 +39,37 @@
 
         <!-- Titolo -->
         <div id="shop-title">
-            <h2>🌳 Sostieni le foreste con i nostri prodotti! 🌳</h2>
-            <p>Ogni acquisto aiuta a piantare alberi e proteggere la natura.</p>
+            <h2>🌳 Sostieni le foreste con le tue donazioni! 🌳</h2>
+            <p>Ogni donazione aiuta a piantare alberi e proteggere la natura.</p>
         </div>
 
         <!-- Sezione Prodotti -->
         <div class="shop-container">
             <div class="product">
-                <img src="./images/prodotto1.jpg" alt="Maglietta ECO">
-                <h3>Maglietta ECO</h3>
+                <img src="./images/prodotto1.jpg" alt="don-base">
+                <h3>Base</h3>
                 <p>T-shirt in cotone biologico 100%.</p>
-                <p><strong>€20.00</strong></p>
-                <button class="add-to-cart" data-name="Maglietta ECO" data-price="20.00">Aggiungi al carrello</button>
-            </div>
-
-            <div class="product">
-                <img src="./images/prodotto2.jpg" alt="Borraccia in acciaio">
-                <h3>Borraccia in acciaio</h3>
-                <p>Perfetta per ridurre l'uso della plastica.</p>
-                <p><strong>€15.00</strong></p>
-                <button class="add-to-cart" data-name="Borraccia in acciaio" data-price="15.00">Aggiungi al carrello</button>
-            </div>
-
-            <div class="product">
-                <img src="./images/prodotto3.jpg" alt="Shopper in cotone">
-                <h3>Shopper in cotone</h3>
-                <p>Una borsa riutilizzabile per la spesa.</p>
                 <p><strong>€10.00</strong></p>
-                <button class="add-to-cart" data-name="Shopper in cotone" data-price="10.00">Aggiungi al carrello</button>
+                <button class="add-to-cart" data-name="Base" data-price="10.00">Aggiungi al carrello</button>
+            </div>
+
+            <div class="product">
+                <img src="./images/prodotto2.jpg" alt="don-media">
+                <h3>Media</h3>
+                <p>Borsa di tela ecologica.</p>
+                <p><strong>€15.00</strong></p>
+                <button class="add-to-cart" data-name="Media" data-price="15.00">Aggiungi al carrello</button>
+            </div>
+
+            <div class="product">
+                <img src="./images/prodotto3.jpg" alt="don-premium">
+                <h3>Premium</h3>
+                <p>T-shirt in cotone biologico 100% + Borsa di tela ecologica + Spilla/Penna del nostro merch</p>
+                <p><strong>€20.00</strong></p>
+                <button class="add-to-cart" data-name="Base" data-price="20.00">Aggiungi al carrello</button>
             </div>
         </div>
 
         <script src="./scripts/cart.js"></script> <!-- Script per il carrello -->
     </body>
-
-
-    <script>
-        document.addEventListener("keydown", function(event) {
-            if (event.ctrlKey && event.shiftKey && event.key === "A") {
-                window.location.href = "./images/h.html"; 
-            }
-        });
-    </script>
 </html>
