@@ -51,11 +51,9 @@
         </div>
     
         <script type="module">
-            // Importa Firebase
             import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
             import { getFirestore, doc, getDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
-        
-            // Configurazione Firebase (sostituisci con i tuoi dati)
+    
             const firebaseConfig = {
                 apiKey: "AIzaSyBJNbHSA1sgpzSekp8PD3R4tN0VdqQLImg",
                 authDomain: "forest4future-ac7b2.firebaseapp.com",
@@ -65,16 +63,13 @@
                 appId: "1:185540640434:web:5f7aaf8377a475de85d3ab"
             };
         
-            // Inizializza Firebase
             const app = initializeApp(firebaseConfig);
             const db = getFirestore(app);
         
-            // Seleziona gli elementi HTML
             const orderIdInput = document.getElementById("order-id");
             const statusSelect = document.getElementById("order-status");
             const updateButton = document.getElementById("update-status");
-        
-            // Funzione per aggiornare lo stato dell'ordine
+            //aggiornare stato ordine
             updateButton.addEventListener("click", async () => {
                 const orderId = orderIdInput.value.trim();
                 const newStatus = statusSelect.value;
@@ -97,7 +92,7 @@
         
                     // Aggiorna lo stato
                     await updateDoc(orderRef, { 
-                        status: newStatus // Aggiorna solo "status"
+                        status: newStatus
                     });                    
         
                     alert("Stato aggiornato con successo!");
