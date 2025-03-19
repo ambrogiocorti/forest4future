@@ -1,5 +1,5 @@
 import { getFirestore, collection, addDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { db } from "./firebase-config.js"; // Importiamo la configurazione
+import { db } from "./script/firebase-config.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Checkout page loaded");
