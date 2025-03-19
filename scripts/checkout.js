@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Checkout page loaded");
 
     const totalPriceElement = document.getElementById("total-price");
+    const cartCountElement = document.getElementById("cart-count");
     const orderForm = document.getElementById("order-form");
     const trackButton = document.getElementById("track-order");
     const orderCodeInput = document.getElementById("order-code");
@@ -12,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     console.log("Elementi trovati:");
     console.log("total-price:", totalPriceElement);
+    console.log("cart-count:", cartCountElement);
     console.log("order-form:", orderForm);
     console.log("track-order:", trackButton);
     console.log("order-code:", orderCodeInput);
@@ -19,6 +21,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     console.log("Carrello recuperato:", cart);
+
+    if (cartCountElement) {
+        cartCountElement.textContent = cart.length;
+    }
+
+    if (totalPriceElement) {
+        const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+        totalPriceElement.textContent = total;
+    }
 
     orderForm.addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -67,6 +78,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
             localStorage.removeItem("cart");
             cart = [];
+
+            if (cartCountElement) cartCountElement.textContent = "0";
+            if (totalPriceElement) totalPriceElement.textContent = "0.00";
+
             orderForm.reset();
         } catch (error) {
             console.error("Errore durante il salvataggio dell'ordine:", error);
