@@ -65,35 +65,42 @@ document.addEventListener("DOMContentLoaded", function () {
         const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
 
         try {
-            const orderRef = await addDoc(collection(db, "orders"), {
-                name: name,
-                email: email,
-                address: address,
-                phone: phone,
-                cart: cart,
-                total: total,
-                status: "Ordinato",
-                timestamp: new Date()
-            });
-
-            const orderId = orderRef.id;
-            alert(`Grazie, ${name}! Il tuo ordine è stato ricevuto con ID: ${orderId}`);
-
-            // 📋 Copia automatica del numero d'ordine negli appunti
-            navigator.clipboard.writeText(orderId).then(() => {
-                alert("Il numero dell'ordine è stato copiato negli appunti!");
-            }).catch(err => {
-                console.error("Errore nella copia:", err);
-            });
-
-            localStorage.removeItem("cart");
-            cart = [];
-            renderCart();
-            orderForm.reset();
-        } catch (error) {
-            console.error("Errore durante il salvataggio dell'ordine:", error);
-            alert("Errore nel completare l'ordine. Riprova più tardi.");
+        const orderRef = await addDoc(collection(db, "orders"), {
+            name: name,
+            email: email,
+            address: address,
+            phone: phone,
+            cart: cart,
+            total: total,
+            status: "Ordinato",
+            timestamp: new Date()
+        });
+    
+        console.log("orderRef:", orderRef); // 🔍 Controlliamo se viene restituito un riferimento valido
+        const orderId = orderRef.id;  // Questo dovrebbe essere l'ID dell'ordine
+        console.log("Order ID generato:", orderId);
+    
+        if (!orderId) {
+            throw new Error("ID ordine non generato!");
         }
+    
+        alert(`Grazie, ${name}! Il tuo ordine è stato ricevuto con ID: ${orderId}`);
+    
+        // 📋 Copia automatica negli appunti
+        navigator.clipboard.writeText(orderId).then(() => {
+            alert("Il numero dell'ordine è stato copiato negli appunti!");
+        }).catch(err => {
+            console.error("Errore nella copia:", err);
+        });
+    
+        localStorage.removeItem("cart");
+        cart = [];
+        renderCart();
+        orderForm.reset();
+    } catch (error) {
+        console.error("Errore durante il salvataggio dell'ordine:", error);
+        alert("Errore nel completare l'ordine. Riprova più tardi.");
+    }
     });
 
     // 🔎 Tracciare un ordine
