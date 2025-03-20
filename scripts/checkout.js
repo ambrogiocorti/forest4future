@@ -11,6 +11,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const orderCodeInput = document.getElementById("order-code");
     const orderStatus = document.getElementById("order-status");
 
+    const clearCartButton = document.getElementById("clear-cart");
+
+    clearCartButton.addEventListener("click", function () {
+        if (confirm("Sei sicuro di voler svuotare il carrello?")) {
+            localStorage.removeItem("cart");
+            alert("Il carrello è stato svuotato!");
+            document.getElementById("total-price").textContent = "0.00";
+        }
+    });
+
+
     console.log("Elementi trovati:");
     console.log("total-price:", totalPriceElement);
     console.log("cart-count:", cartCountElement);
