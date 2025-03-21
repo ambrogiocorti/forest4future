@@ -79,10 +79,3 @@ body {
     top: -5px;
     right: -10px;
 }
-
-#custom-donation{
-    border: 1px solid rgb(147, 147, 147);
-    border-radius: 5px;
-    padding: 6px 10px;
-    margin-bottom: 7px;
-}

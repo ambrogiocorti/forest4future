@@ -11,7 +11,7 @@ body {
 #slogan {
     border: 1px solid black;
     height: 80px;
-    margin: 20px;
+    margin: 20px auto;
     border-radius: 10px;
     display: flex;
     align-items: center;
@@ -19,4 +19,5 @@ body {
     text-align: center;
     color: white;
     background-image: url("/images/pine-tree.jpg");
+    width: calc(100% - 40px);
 }

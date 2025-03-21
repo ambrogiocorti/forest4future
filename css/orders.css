@@ -1,4 +1,3 @@
-/* Stile generale */
 body {
     font-family: 'Poppins', sans-serif;
     background-color: #f8f9fa;
@@ -6,36 +5,30 @@ body {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
-    padding: 10px; /* Aggiunge un po’ di margine ai lati */
-    overflow: hidden; /* Evita scroll verticale generale */
+    padding: 10px;
+    overflow: hidden;
 }
 
-/* Riduce ancora di più la distanza tra gli elementi */
 .container {
-    gap: 6px; /* Riduce lo spazio tra gli elementi */
-    padding: 15px; /* Rende il contenitore più compatto */
+    gap: 6px;
+    padding: 15px;
 }
 
-/* Rimuove ulteriore spazio tra label e input */
 label {
     margin-bottom: 4px;
 }
 
 input, select {
-    width: 100%; /* Assicura che occupino tutto lo spazio disponibile */
-    padding: 10px; /* Riduce il padding interno */
-    margin-bottom: 4px; /* Diminuisce lo spazio dopo l'input */
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 4px;
 }
 
-/* Riduce lo spazio sopra il bottone */
 #update-status {
-    margin-top: 8px; /* Avvicina il bottone agli altri elementi */
-    height: 45px; /* Riduce leggermente l'altezza */
+    margin-top: 8px;
+    height: 45px;
 }
 
-
-/* Contenitore principale */
-/* Contenitore principale */
 .container {
     width: 90%;
     max-width: 400px;
@@ -46,22 +39,19 @@ input, select {
     text-align: center;
     display: flex;
     flex-direction: column;
-    gap: 12px; /* Riduce la distanza tra gli elementi */
+    gap: 12px;
     transition: all 0.3s ease-in-out;
-    height: auto; /* Adatta l'altezza al contenuto */
-    max-height: 75vh; /* Evita che il container sia troppo alto */
-    overflow-y: auto; /* Aggiunge scroll interno se serve */
+    height: auto;
+    max-height: 75vh;
+    overflow-y: auto;
 }
 
-
-/* Titolo */
 h2 {
     color: #343a40;
     font-size: 22px;
     margin-bottom: 10px;
 }
 
-/* Stile per input e select */
 input {
     width: 90%;
     padding: 12px;
@@ -86,7 +76,6 @@ select {
     outline: none;
 }
 
-/* Effetto al focus */
 input:focus, select:focus {
     border-color: yellowgreen;
     background: white;
@@ -97,16 +86,15 @@ label {
     font-size: 16px;
     font-weight: bold;
     color: #343a40;
-    margin-bottom: 6px; /* Dimezza lo spazio (puoi ridurre ulteriormente se serve) */
+    margin-bottom: 6px;
     display: block;
 }
 
 .container label + input,
 .container label + select {
-    margin-top: -50px; /* Avvicina ancora di più l'input alla label */
+    margin-top: -50px;
 }
 
-/* Bottone "Aggiorna Stato" */
 #update-status {
     width: 100%;
     height: 50px;
@@ -127,7 +115,6 @@ label {
     transform: translateY(-2px);
 }
 
-/* Migliore gestione della responsività */
 @media (max-width: 768px) {
     .container {
         width: 90%;
