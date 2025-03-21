@@ -125,3 +125,25 @@ form button:hover {
     background-color: #c9302c;
     transform: scale(1.05);
 }
+
+@media screen and (max-width: 768px) {
+    #clear-cart {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease, transform 0.2s;
+    margin-top: 10px;
+    display: block;
+    width: 30%;
+    text-align: center;
+}
+
+#clear-cart:hover {
+    background-color: #c9302c;
+    transform: scale(1.05);
+}
+}
