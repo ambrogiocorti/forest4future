@@ -37,39 +37,42 @@
             </div>
         </div>
 
-        <!-- Titolo -->
         <div id="shop-title">
             <h2>🌳 Sostieni le foreste con le tue donazioni! 🌳</h2>
             <p>Ogni donazione aiuta a piantare alberi e proteggere la natura.</p>
         </div>
 
-        <!-- Sezione Prodotti -->
         <div class="shop-container">
             <div class="product">
-                <img src="./images/prodotto1.jpg" alt="don-base">
                 <h3>Base</h3>
-                <p>T-shirt in cotone biologico 100%.</p>
+                <p>T-shirt in cotone biologico 100% <br> adesivo</p><hr>
                 <p><strong>€10.00</strong></p>
                 <button class="add-to-cart" data-name="Base" data-price="10.00">Aggiungi al carrello</button>
             </div>
 
             <div class="product">
-                <img src="./images/prodotto2.jpg" alt="don-media">
                 <h3>Media</h3>
-                <p>Borsa di tela ecologica.</p>
+                <p>Borsa di tela ecologica <br> adesivo</p><hr>
                 <p><strong>€15.00</strong></p>
                 <button class="add-to-cart" data-name="Media" data-price="15.00">Aggiungi al carrello</button>
             </div>
 
             <div class="product">
-                <img src="./images/prodotto3.jpg" alt="don-premium">
                 <h3>Premium</h3>
-                <p>T-shirt in cotone biologico 100% + Borsa di tela ecologica + Spilla/Penna del nostro merch</p>
+                <p>Donazione base <br> Donazione media</p><hr>
                 <p><strong>€20.00</strong></p>
                 <button class="add-to-cart" data-name="Base" data-price="20.00">Aggiungi al carrello</button>
             </div>
+
+            <div class="product">
+                <h3>Donazione Libera</h3>
+                <p>Sostieni la causa con un importo a tua scelta.</p>
+                <hr>
+                <strong>€</strong> <input type="number" id="custom-donation" placeholder="Importo" min="1" max="1000" step="1">
+                <button class="add-to-cart">Aggiungi al carrello</button>
+            </div>
         </div>
 
-        <script src="./scripts/cart.js"></script> <!-- Script per il carrello -->
+        <script src="./scripts/cart.js"></script>
     </body>
 </html>
