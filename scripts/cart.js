@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
             localStorage.setItem("cart", JSON.stringify(cart));
             updateCartCount();
 
-            alert(`${name} aggiunto al carrello! 🛒`); // Conferma che il prodotto è stato aggiunto
+            alert(`${name} aggiunto al carrello! 🛒`);
         });
     });
 
