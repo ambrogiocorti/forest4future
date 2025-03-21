@@ -61,16 +61,30 @@
                 <h3>Premium</h3>
                 <p>Donazione base <br> Donazione media</p><hr>
                 <p><strong>€20.00</strong></p>
-                <button class="add-to-cart" data-name="Base" data-price="20.00">Aggiungi al carrello</button>
+                <button class="add-to-cart" data-name="Premium" data-price="20.00">Aggiungi al carrello</button>
             </div>
 
             <div class="product">
                 <h3>Donazione Libera</h3>
                 <p>Sostieni la causa con un importo a tua scelta.</p>
                 <hr>
-                <strong>€</strong> <input type="number" id="custom-donation" placeholder="Importo" min="1" max="1000" step="1">
-                <button class="add-to-cart">Aggiungi al carrello</button>
+                <strong>€</strong> 
+                <input type="number" id="custom-donation" placeholder="Importo" min="1" max="1000" step="1">
+                <button class="add-to-cart" data-name="Donazione libera" id="donation-button">Aggiungi al carrello</button> 
             </div>
+            
+            <script>
+                document.getElementById("custom-donation").addEventListener("input", function() {
+                    let amount = this.value;
+                    let button = document.getElementById("donation-button");
+                    
+                    if (amount >= 1 && amount <= 1000) {
+                        button.setAttribute("data-price", amount);
+                    } else {
+                        button.removeAttribute("data-price");
+                    }
+                });
+            </script>            
         </div>
 
         <script src="./scripts/cart.js"></script>
