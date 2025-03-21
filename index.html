@@ -7,21 +7,15 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="title" content="F4F.INFO - Forest 4 Future">
         <meta name="slogan" content="Tagliare gli alberi è tagliare il nostro futuro. Salviamo le foreste, salviamo la vita!">
-        <meta name="description" content="Sito web creato da Corti Ambrogio, Berneri Elia, Tocco Matteo e Fasoli Daniele">
-        <meta name="keywords" content="forest4future, forest for future, f4f.info, forest, future, 4, education, corti, tocco, berneri, fasoli, itsos marie curie">
+        <meta name="keywords" content="forest4future, forest for future, f4f.info, forest, future, 4, education, itsos marie curie">
         <meta name="category" content="Education">
         <link rel="stylesheet" href="./css/nav.css">
-        <link rel="stylesheet" href="./css/sinistra.css">
+        <link rel="stylesheet" href="./css/container.css">
         <link rel="stylesheet" href="./css/destra.css">
         <link rel="stylesheet" href="./css/body.css">
         <link rel="stylesheet" href="./css/body-tel.css">
         <title>FOREST4FUTURE</title>
     </head>
-    <style>
-        body{
-            margin-top: 70px;
-        }
-    </style>
     <body>
 
         <!-- Navbar -->
@@ -36,7 +30,7 @@
             <div class="link">
                 <a href="#descrizione">
                     <img src="./images/list-icon.png">
-                    <p>COSA FACCIAMO</p>
+                    <p>DESCRIZIONE</p>
                 </a>
             </div>
             <div class="link">
@@ -52,15 +46,15 @@
                 </a>
             </div>
             <div class="link">
+                <a href="#altriProgetti">
+                    <img src="./images/project-icon.png">
+                    <p>ALTRI PROGETTI</p>
+                </a>
+            </div>
+            <div class="link">
                 <a href="donazioni.html">
                     <img src="./images/shop-icon.png" alt="Negozio">
                     <p>DONAZIONI</p>
-                </a>
-            </div>
-            <div id="cart" class="link">
-                <a href="checkout.html">
-                    <img src="./images/cart-icon.png" alt="Carrello">
-                    <span id="cart-count">0</span>
                 </a>
             </div>
             <div id="social" class="link">
@@ -73,17 +67,15 @@
         </div>
         <div class="container">
 
-            <!-- Sinistra -->
-
-            <div class="sinistra"> 
+            <div class="container-body"> 
 
                 <!-- Carosello -->
 
                 <div id="carosello">
                     <button id="prev">&lt;</button>
-                    <div id="immagini">
-                        <p>Carosello immagini con javascript</p> 
-                    </div>
+
+                    <div id="immagini"> </div>
+
                     <button id="next">&gt;</button>
                 </div>
                 <script src="./scripts/carosello.js"></script>
@@ -91,13 +83,28 @@
                 <!-- Descrizione - Chi siamo - Membri -->
 
                 <div id="descrizione" class="desc-sx">
-                    <p>descrizione</p>
+                    <p><b>Chi siamo?</b><br>
+                        Forest4Future è un'associazione di crowdfunding nata con un obiettivo ambizioso: proteggere e salvare la foresta amazzonica dall'incessante disboscamento. Attraverso le donazioni, acquistiamo ettari di foresta per sottrarli alla deforestazione e garantire che rimangano intatti per le generazioni future.<br>
+                        
+                        <b>Cosa facciamo?</b><br>
+                        Ogni contributo raccolto ci permette non solo di preservare la foresta esistente, ma anche di ripiantare gli alberi già abbattuti, contribuendo così al ripristino dell'ecosistema e alla lotta contro il cambiamento climatico.<br>
+                        
+                        <b>Unisciti a noi!</b><br>
+                        La foresta amazzonica è il polmone verde del pianeta, ma ogni giorno perde ettari preziosi. Con il tuo aiuto, possiamo proteggerla e ridarle vita. Ogni donazione, grande o piccola, fa la differenza. Sostieni Forest4Future oggi stesso e diventa parte del cambiamento! 🌱🌍💚</p>
                 </div>
-                <div id="chiSiamo" class="desc-sx">
-                    <p>chi siamo</p>
-                </div>
+                
                 <div id="membri" class="desc-sx">
-                    <p>membri</p>
+                    <p><b>Fondatore</b><br>
+                            - Daniele Fasoli<br>
+                       <b>Vicefondatore</b><br>
+                            - Elia Berneri<br>
+                       <b>Segretario</b><br>
+                            - Matteo Tocco<br>
+                       <b> Tesoriere</b><br>
+                            - Ambrogio Corti</p>
+                </div>
+                <div id="altriProgetti" class="desc-sx">
+                    <p>altri progetti</p>
                 </div>
             </div>
         </div>

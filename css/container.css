@@ -15,23 +15,26 @@
 #prev, #next {
     background-color: yellowgreen;
     color: white;
-    border: none;
+    border: 1px solid darkgreen;
     padding: 15px 25px;
     font-size: 20px;
     cursor: pointer;
     border-radius: 10px;
-    margin: 5px;
+    margin: auto;
+    align-items: center;
+    justify-content: center;
 }
 #prev:hover, #next:hover {
     background-color: green;
 }
-.sinistra {
+.container-body {
     flex: 1;
 }
 .desc-sx {
-    border: 1px solid black;
-    margin: 10px 30px;
+    margin: 10px 350px;
     border-radius: 10px;
     padding: 0px 5px;
     overflow: scroll;
+    font-size: 125%;
+    color: darkgreen;
 }
