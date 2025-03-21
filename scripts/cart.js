@@ -17,6 +17,16 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
+    function aggiungiDonazione() {
+        let importo = document.getElementById("donazioneImporto").value;
+        if (importo && importo > 0) {
+            localStorage.setItem("donazione", importo);
+            alert("Donazione aggiunta con successo!");
+        } else {
+            alert("Inserisci un importo valido!");
+        }
+    }
+
     function updateCartCount() {
         cartCount.textContent = cart.length;
     }
