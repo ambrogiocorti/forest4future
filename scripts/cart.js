@@ -11,21 +11,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const buttons = document.querySelectorAll(".add-to-cart");
     const cartCount = document.getElementById("cart-count");
     const customDonationBtn = document.getElementById("custom-donation-btn");
+    const customDonationInput = document.getElementById("custom-donation");
 
-    buttons.forEach(button => {
-        button.addEventListener("click", function () {
-            const name = this.getAttribute("data-name");
-            const price = parseFloat(this.getAttribute("data-price"));
-            addToCart(name, price);
+    if (buttons) {
+        buttons.forEach(button => {
+            button.addEventListener("click", function () {
+                const name = this.getAttribute("data-name");
+                const price = parseFloat(this.getAttribute("data-price"));
+                if (name && !isNaN(price)) {
+                    addToCart(name, price);
+                } else {
+                    console.error("Errore: nome o prezzo non validi");
+                }
+            });
         });
-    });
+    }
 
-    if (customDonationBtn) {
+    if (customDonationBtn && customDonationInput) {
         customDonationBtn.addEventListener("click", async function () {
-            let amount = parseFloat(document.getElementById("custom-donation").value);
+            let amount = parseFloat(customDonationInput.value);
             if (!isNaN(amount) && amount > 0) {
                 addToCart("Donazione Libera", amount);
-                document.getElementById("custom-donation").value = "";
+                customDonationInput.value = "";
                 await updateDonationStats(amount);
             } else {
                 alert("Inserisci un importo valido.");
@@ -87,6 +94,7 @@ function listenToDonations() {
     });
 }
 
+// Funzione per resettare le donazioni (visibile solo agli admin)
 document.addEventListener("DOMContentLoaded", function () {
     let resetButton = document.getElementById("reset-donations");
     if (resetButton) {
