@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (customDonationBtn && customDonationInput) {
-        customDonationBtn.addEventListener("click", async function () {
+        customDonationBtn.addEventListener("click", function () {
             let amount = parseFloat(customDonationInput.value);
             if (!isNaN(amount) && amount > 0) {
                 addToCart("Donazione Libera", amount);
@@ -56,30 +56,6 @@ document.addEventListener("DOMContentLoaded", function () {
     listenToDonations();
 });
 
-async function updateDonationStats(amount) {
-    const donationRef = doc(db, "donations", "stats");
-
-    try {
-        const docSnap = await getDoc(donationRef);
-        let totalDonations = 0;
-        let donorCount = 0;
-
-        if (docSnap.exists()) {
-            totalDonations = docSnap.data().total || 0;
-            donorCount = docSnap.data().donors || 0;
-        }
-
-        totalDonations += amount;
-        donorCount++;
-
-        await setDoc(donationRef, { total: totalDonations, donors: donorCount });
-
-        console.log("Donazioni aggiornate:", totalDonations, "€ | Donatori:", donorCount);
-    } catch (error) {
-        console.error("Errore nell'aggiornamento delle donazioni:", error);
-    }
-}
-
 function listenToDonations() {
     const donationRef = doc(db, "donations", "stats");
 
@@ -94,7 +70,6 @@ function listenToDonations() {
 }
 
 document.addEventListener("DOMContentLoaded", listenToDonations);
-
 
 document.addEventListener("DOMContentLoaded", function () {
     let resetButton = document.getElementById("reset-donations");
