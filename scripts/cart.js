@@ -86,18 +86,15 @@ function listenToDonations() {
     onSnapshot(donationRef, (docSnap) => {
         if (docSnap.exists()) {
             const data = docSnap.data();
-            if (document.getElementById("current-donations")) {
-                document.getElementById("current-donations").textContent = `€${formatNumber(data.total)}`;
-            }
-            if (document.getElementById("donor-count")) {
-                document.getElementById("donor-count").textContent = data.donors;
-            }
-            if (document.getElementById("progress-fill")) {
-                document.getElementById("progress-fill").style.width = `${(data.total / 1000000) * 100}%`;
-            }
+            document.getElementById("current-donations").textContent = `€${formatNumber(data.total)}`;
+            document.getElementById("donor-count").textContent = data.donors;
+            document.getElementById("progress-fill").style.width = `${(data.total / 1000000) * 100}%`;
         }
     });
 }
+
+document.addEventListener("DOMContentLoaded", listenToDonations);
+
 
 document.addEventListener("DOMContentLoaded", function () {
     let resetButton = document.getElementById("reset-donations");
