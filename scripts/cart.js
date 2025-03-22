@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!isNaN(amount) && amount > 0) {
                 addToCart("Donazione Libera", amount);
                 customDonationInput.value = "";
-                await updateDonationStats(amount);
             } else {
                 alert("Inserisci un importo valido.");
             }
