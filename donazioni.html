@@ -69,16 +69,20 @@
                 <p>Sostieni la causa con un importo a tua scelta.</p>
                 <hr>
                 <strong>€</strong> 
-                <input type="number" id="custom-donation" placeholder="Importo" min="1" max="1000" step="1">
+                <input type="number" id="custom-donation" placeholder="Importo" min="1" step="1">
                 <button class="add-to-cart" data-name="Donazione libera" id="donation-button">Aggiungi al carrello</button> 
             </div>
+
+            <!--<button id="reset-donations" class="reset-btn">🔄 Resetta Donazioni</button>-->
+            <!--bottone per resettare le donazioni-->
+
             
             <script>
                 document.getElementById("custom-donation").addEventListener("input", function() {
                     let amount = this.value;
                     let button = document.getElementById("donation-button");
                     
-                    if (amount >= 1 && amount <= 1000) {
+                    if (amount >= 1) {
                         button.setAttribute("data-price", amount);
                     } else {
                         button.removeAttribute("data-price");
@@ -86,6 +90,17 @@
                 });
             </script>            
         </div>
+
+        <div id="donation-progress">
+            <h3>🎯 Obiettivo di Raccolta: €1.000.000</h3>
+            <p>💰 Donazioni raccolte: <span id="current-donations">0.00</span></p>
+            <p>👥 Donatori: <span id="donor-count">0</span></p>
+            
+            <div id="progress-bar">
+                <div id="progress-fill" style="width: 0%; background-color: green; height: 20px;"></div>
+            </div>
+        </div>        
+        
 
         <script src="./scripts/cart.js"></script>
     </body>
