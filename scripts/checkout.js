@@ -37,49 +37,50 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     orderForm.addEventListener("submit", async function (event) {
-        event.preventDefault();
+    event.preventDefault();
 
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const address = document.getElementById("address").value;
-        const phone = document.getElementById("phone").value;
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const address = document.getElementById("address").value;
+    const phone = document.getElementById("phone").value;
 
-        if (cart.length === 0) {
-            alert("Il carrello è vuoto! Aggiungi prodotti prima di confermare l'ordine.");
-            return;
-        }
+    if (cart.length === 0) {
+        alert("Il carrello è vuoto! Aggiungi prodotti prima di confermare l'ordine.");
+        return;
+    }
 
-        const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+    const total = cart.reduce((sum, item) => sum + item.price, 0);
 
-        try {
-            const orderRef = await addDoc(collection(db, "orders"), {
-                name: name,
-                email: email,
-                address: address,
-                phone: phone,
-                cart: cart,
-                total: total,
-                status: "Ordinato",
-                timestamp: new Date()
-            });
+    try {
+        const orderRef = await addDoc(collection(db, "orders"), {
+            name: name,
+            email: email,
+            address: address,
+            phone: phone,
+            cart: cart,
+            total: total,
+            status: "Ordinato",
+            timestamp: new Date()
+        });
 
-            const orderId = orderRef.id;
-            alert(`Grazie, ${name}! Il tuo ordine è stato ricevuto con ID: ${orderId}`);
+        const orderId = orderRef.id;
+        alert(`Grazie, ${name}! Il tuo ordine è stato ricevuto con ID: ${orderId}`);
 
-            navigator.clipboard.writeText(orderId)
-                .then(() => alert("Il numero dell'ordine è stato copiato negli appunti!"))
-                .catch(err => console.error("Errore nella copia:", err));
+        navigator.clipboard.writeText(orderId)
+            .then(() => alert("Il numero dell'ordine è stato copiato negli appunti!"))
+            .catch(err => console.error("Errore nella copia:", err));
 
-            updateDonationStats(total);
-            localStorage.removeItem("cart");
-            cart = [];
-            updateCartDisplay();
-            orderForm.reset();
-        } catch (error) {
-            console.error("Errore durante il salvataggio dell'ordine:", error);
-            alert("Errore nel completare l'ordine. Riprova più tardi.");
-        }
-    });
+        await updateDonationStats(total);
+
+        localStorage.removeItem("cart");
+        cart = [];
+        updateCartDisplay();
+        orderForm.reset();
+    } catch (error) {
+        console.error("Errore durante il salvataggio dell'ordine:", error);
+        alert("Errore nel completare l'ordine. Riprova più tardi.");
+    }
+});
 
     trackButton.addEventListener("click", async function () {
         const orderId = orderCodeInput.value.trim();
