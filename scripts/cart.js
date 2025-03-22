@@ -87,14 +87,19 @@ function listenToDonations() {
     onSnapshot(donationRef, (docSnap) => {
         if (docSnap.exists()) {
             const data = docSnap.data();
-            document.getElementById("current-donations").textContent = `€${formatNumber(data.total)}`;
-            document.getElementById("donor-count").textContent = data.donors;
-            document.getElementById("progress-fill").style.width = `${(data.total / 1000000) * 100}%`;
+            if (document.getElementById("current-donations")) {
+                document.getElementById("current-donations").textContent = `€${formatNumber(data.total)}`;
+            }
+            if (document.getElementById("donor-count")) {
+                document.getElementById("donor-count").textContent = data.donors;
+            }
+            if (document.getElementById("progress-fill")) {
+                document.getElementById("progress-fill").style.width = `${(data.total / 1000000) * 100}%`;
+            }
         }
     });
 }
 
-// Funzione per resettare le donazioni (visibile solo agli admin)
 document.addEventListener("DOMContentLoaded", function () {
     let resetButton = document.getElementById("reset-donations");
     if (resetButton) {
