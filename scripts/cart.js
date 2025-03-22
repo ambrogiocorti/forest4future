@@ -1,3 +1,6 @@
+import { db } from "./firebase-config.js";
+import { doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 function formatNumber(number) {
@@ -18,12 +21,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     if (customDonationBtn) {
-        customDonationBtn.addEventListener("click", function () {
+        customDonationBtn.addEventListener("click", async function () {
             let amount = parseFloat(document.getElementById("custom-donation").value);
             if (!isNaN(amount) && amount > 0) {
                 addToCart("Donazione Libera", amount);
                 document.getElementById("custom-donation").value = "";
-                updateDonationStats(amount);
+                await updateDonationStats(amount);
             } else {
                 alert("Inserisci un importo valido.");
             }
@@ -35,64 +38,63 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("cart", JSON.stringify(cart));
         updateCartCount();
         alert(`${name} aggiunto al carrello! 🛒`);
-
-        if (document.getElementById("donation-progress")) {
-            updateDonationProgress();
-        }
     }
 
     function updateCartCount() {
-        cartCount.textContent = cart.length;
+        if (cartCount) {
+            cartCount.textContent = cart.length;
+        }
     }
 
     updateCartCount();
-
-    if (document.getElementById("donation-progress")) {
-        updateDonationProgress();
-    }
+    listenToDonations();
 });
 
-function updateDonationStats(amount) {
-    let totalDonations = parseFloat(localStorage.getItem("totalDonations")) || 0;
-    let donorCount = parseInt(localStorage.getItem("donorCount")) || 0;
+async function updateDonationStats(amount) {
+    const donationRef = doc(db, "donations", "stats");
 
-    totalDonations += amount;
-    donorCount++;
+    try {
+        const docSnap = await getDoc(donationRef);
+        let totalDonations = 0;
+        let donorCount = 0;
 
-    localStorage.setItem("totalDonations", totalDonations.toFixed(2));
-    localStorage.setItem("donorCount", donorCount);
+        if (docSnap.exists()) {
+            totalDonations = docSnap.data().total || 0;
+            donorCount = docSnap.data().donors || 0;
+        }
 
-    updateDonationProgress();
+        totalDonations += amount;
+        donorCount++;
+
+        await setDoc(donationRef, { total: totalDonations, donors: donorCount });
+
+        console.log("Donazioni aggiornate:", totalDonations, "€ | Donatori:", donorCount);
+    } catch (error) {
+        console.error("Errore nell'aggiornamento delle donazioni:", error);
+    }
 }
 
-function updateDonationProgress() {
-    let totalDonations = parseFloat(localStorage.getItem("totalDonations")) || 0;
-    let donorCount = parseInt(localStorage.getItem("donorCount")) || 0;
-    let goal = 1000000; //obbiettivo donazioni
+function listenToDonations() {
+    const donationRef = doc(db, "donations", "stats");
 
-    if (document.getElementById("current-donations")) {
-        document.getElementById("current-donations").textContent = `€${formatNumber(totalDonations)}`;
-    }
-    if (document.getElementById("donor-count")) {
-        document.getElementById("donor-count").textContent = donorCount;
-    }
+    onSnapshot(donationRef, (docSnap) => {
+        if (docSnap.exists()) {
+            const data = docSnap.data();
+            document.getElementById("current-donations").textContent = `€${formatNumber(data.total)}`;
+            document.getElementById("donor-count").textContent = data.donors;
+            document.getElementById("progress-fill").style.width = `${(data.total / 1000000) * 100}%`;
+        }
+    });
+}
 
-    let progressPercentage = (totalDonations / goal) * 100;
-    if (document.getElementById("progress-fill")) {
-        document.getElementById("progress-fill").style.width = `${progressPercentage}%`;
-    }
-
+document.addEventListener("DOMContentLoaded", function () {
     let resetButton = document.getElementById("reset-donations");
     if (resetButton) {
-        resetButton.addEventListener("click", function () {
+        resetButton.addEventListener("click", async function () {
             if (confirm("Sei sicuro di voler azzerare le donazioni?")) {
-                localStorage.setItem("totalDonations", "0");
-                localStorage.setItem("donorCount", "0");
+                await setDoc(doc(db, "donations", "stats"), { total: 0, donors: 0 });
                 alert("Le donazioni sono state resettate!");
-                updateDonationProgress();
             }
         });
     }
-}
-
-document.addEventListener("DOMContentLoaded", updateDonationProgress);
+});
