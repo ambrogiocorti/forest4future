@@ -1,6 +1,10 @@
 import { getFirestore, collection, addDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { db } from "./firebase-config.js";
 
+function formatNumber(number) {
+    return new Intl.NumberFormat('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format(number);
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Checkout page loaded");
 
@@ -10,37 +14,27 @@ document.addEventListener("DOMContentLoaded", function () {
     const trackButton = document.getElementById("track-order");
     const orderCodeInput = document.getElementById("order-code");
     const orderStatus = document.getElementById("order-status");
-
     const clearCartButton = document.getElementById("clear-cart");
-
-    clearCartButton.addEventListener("click", function () {
-        if (confirm("Sei sicuro di voler svuotare il carrello?")) {
-            localStorage.removeItem("cart");
-            alert("Il carrello è stato svuotato!");
-            document.getElementById("total-price").textContent = "0.00";
-        }
-    });
-
-
-    console.log("Elementi trovati:");
-    console.log("total-price:", totalPriceElement);
-    console.log("cart-count:", cartCountElement);
-    console.log("order-form:", orderForm);
-    console.log("track-order:", trackButton);
-    console.log("order-code:", orderCodeInput);
-    console.log("order-status:", orderStatus);
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
     console.log("Carrello recuperato:", cart);
 
-    if (cartCountElement) {
+    function updateCartDisplay() {
+        let total = cart.reduce((sum, item) => sum + item.price, 0);
+        totalPriceElement.textContent = formatNumber(total);
         cartCountElement.textContent = cart.length;
-    }
+    }    
 
-    if (totalPriceElement) {
-        const total = cart.reduce((sum, item) => sum + item.price, 0).toFixed(2);
-        totalPriceElement.textContent = total;
-    }
+    updateCartDisplay();
+
+    clearCartButton.addEventListener("click", function () {
+        if (confirm("Sei sicuro di voler svuotare il carrello?")) {
+            localStorage.removeItem("cart");
+            cart = [];
+            alert("Il carrello è stato svuotato!");
+            updateCartDisplay();
+        }
+    });
 
     orderForm.addEventListener("submit", async function (event) {
         event.preventDefault();
@@ -49,8 +43,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const email = document.getElementById("email").value;
         const address = document.getElementById("address").value;
         const phone = document.getElementById("phone").value;
-
-        console.log("Carrello al momento dell'ordine:", cart);
 
         if (cart.length === 0) {
             alert("Il carrello è vuoto! Aggiungi prodotti prima di confermare l'ordine.");
@@ -65,34 +57,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 email: email,
                 address: address,
                 phone: phone,
-                cart: cart, 
+                cart: cart,
                 total: total,
                 status: "Ordinato",
                 timestamp: new Date()
             });
 
-            console.log("orderRef:", orderRef); 
-            const orderId = orderRef.id;  
-            console.log("Order ID generato:", orderId);
-
-            if (!orderId) {
-                throw new Error("ID ordine non generato!");
-            }
-
+            const orderId = orderRef.id;
             alert(`Grazie, ${name}! Il tuo ordine è stato ricevuto con ID: ${orderId}`);
 
-            navigator.clipboard.writeText(orderId).then(() => {
-                alert("Il numero dell'ordine è stato copiato negli appunti!");
-            }).catch(err => {
-                console.error("Errore nella copia:", err);
-            });
+            navigator.clipboard.writeText(orderId)
+                .then(() => alert("Il numero dell'ordine è stato copiato negli appunti!"))
+                .catch(err => console.error("Errore nella copia:", err));
 
+            updateDonationStats(total);
             localStorage.removeItem("cart");
             cart = [];
-
-            if (cartCountElement) cartCountElement.textContent = "0";
-            if (totalPriceElement) totalPriceElement.textContent = "0.00";
-
+            updateCartDisplay();
             orderForm.reset();
         } catch (error) {
             console.error("Errore durante il salvataggio dell'ordine:", error);
@@ -122,3 +103,14 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+
+function updateDonationStats(amount) {
+    let totalDonations = parseFloat(localStorage.getItem("totalDonations")) || 0;
+    let donorCount = parseInt(localStorage.getItem("donorCount")) || 0;
+
+    totalDonations += parseFloat(amount);
+    donorCount++;
+
+    localStorage.setItem("totalDonations", totalDonations.toFixed(2));
+    localStorage.setItem("donorCount", donorCount);
+}
