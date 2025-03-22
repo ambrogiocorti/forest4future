@@ -105,13 +105,26 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
-function updateDonationStats(amount) {
-    let totalDonations = parseFloat(localStorage.getItem("totalDonations")) || 0;
-    let donorCount = parseInt(localStorage.getItem("donorCount")) || 0;
+async function updateDonationStats(amount) {
+    const donationRef = doc(db, "donations", "stats");
 
-    totalDonations += parseFloat(amount);
-    donorCount++;
+    try {
+        const docSnap = await getDoc(donationRef);
+        let totalDonations = 0;
+        let donorCount = 0;
 
-    localStorage.setItem("totalDonations", totalDonations.toFixed(2));
-    localStorage.setItem("donorCount", donorCount);
+        if (docSnap.exists()) {
+            totalDonations = docSnap.data().total || 0;
+            donorCount = docSnap.data().donors || 0;
+        }
+
+        totalDonations += amount;
+        donorCount++;
+
+        await setDoc(donationRef, { total: totalDonations, donors: donorCount });
+
+        console.log(`✅ Donazioni aggiornate: ${totalDonations} € | Donatori: ${donorCount}`);
+    } catch (error) {
+        console.error("❌ Errore nell'aggiornamento delle donazioni:", error);
+    }
 }
