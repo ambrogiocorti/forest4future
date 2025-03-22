@@ -2,7 +2,7 @@ body {
     font-family: arial;
     margin: 0px;
     margin-top: 50px;
-    background-image: url(/images/sfondo.jpg);
+    background-image: url(../images/sfondo.jpg);
     background-repeat: repeat;
 }
 
@@ -19,5 +19,5 @@ body {
     justify-content: center;
     text-align: center;
     color: white;
-    background-image: url("/images/pine-tree.jpg");
+    background-image: url("../images/pine-tree.jpg");
 }
