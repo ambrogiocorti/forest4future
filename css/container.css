@@ -35,3 +35,16 @@
     font-size: 125%;
     color: rgb(0, 92, 0);
 }
+
+.freccia {
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
+
+.contenuto {
+    display: none;
+    align-items: center;
+}
+.contenuto img {
+    max-width: 40%;
+}

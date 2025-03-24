@@ -46,6 +46,12 @@
                 </a>
             </div>
             <div class="link">
+                <a href="#altriProgetti">
+                    <img src="/images/project-icon.png">
+                    <p>ALTRI PROGETTI</p>
+                </a>
+            </div>
+            <div class="link">
                 <a href="donazioni.html">
                     <img src="./images/shop-icon.png" alt="Negozio">
                     <p>DONAZIONI</p>
@@ -101,7 +107,47 @@
                        <b> Tesoriere</b><br>
                             - Ambrogio Corti</p>
                 </div>
+                <div id="altriProgetti" class="desc-sx">
+                    <h2>Altri progetti</h2>
+                    <div class="progetto">
+                        <div class="titolo" onclick="toggleDiv(this)">
+                            <h3><span class="freccia">▶</span> Monitoraggio Satellitare della Deforestazione</h3>
+                        </div>
+                        <div class="contenuto">
+                            <img src="./images/progetto-1.jpeg">
+                            <p><b>Descrizione: </b>Utilizzare immagini satellitari per monitorare le aree forestali a rischio di deforestazione. Creare una piattaforma online che permetta alle organizzazioni e ai governi di visualizzare in tempo reale l'estensione della deforestazione.
+                                <br><b>Obiettivo: </b>Fornire strumenti per identificare le aree di deforestazione illegale, supportare le politiche di protezione delle foreste e promuovere l'uso responsabile delle risorse naturali.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="progetto">
+                        <div class="titolo" onclick="toggleDiv(this)">
+                            <h3><span class="freccia">▶</span> Certificazione della Legna Sostenibile</h3>
+                        </div>
+                        <div class="contenuto">
+                            <img src="./images/progetto-2.jpeg">
+                            <p><b>Descrizione: </b>Una rete di produttori di legno che aderiscono a pratiche di raccolta responsabile e sostenibile, ottenendo una certificazione che garantisca la provenienza legale e sostenibile del materiale.<br>
+                                <b>Obiettivo: </b>La domanda di legname proveniente da pratiche illegali di deforestazione e promuovere l'uso di legno certificato.</p>
+                        </div>
+                    </div>
+                </div>                
             </div>
         </div>
+
+        <script>
+            function toggleDiv(element) {
+                let contenuto = element.nextElementSibling;
+                let freccia = element.querySelector('.freccia');
+
+                if (contenuto.style.display === "block") {
+                    contenuto.style.display = "none";
+                    freccia.style.transform = "rotate(0deg)";
+                } else {
+                    contenuto.style.display = "block";
+                    freccia.style.transform = "rotate(90deg)";
+                }
+            }       
+        </script>
     </body>
 </html>
